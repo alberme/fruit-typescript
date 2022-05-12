@@ -24,6 +24,8 @@ const AddFruit: FC = () => {
     setPriceInputError(priceError);
     if (!nameError && !priceError) {
       addFruit(newFruit);
+      setFruitName('');
+      setFruitPrice(-1);
       nameInputRef.current?.clear();
       priceInputRef.current?.clear();
     }
