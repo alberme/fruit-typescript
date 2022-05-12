@@ -8,9 +8,10 @@ import AddFruit from './AddFruit';
 
 const FruitList: FC = () => {
   const [searchList, setSearchList] = useState<FruitType[]>([]);
-  const { fruitsList } = useContext<FruitContextType>(FruitContext);
   const [showSearchList, setShowSearchList] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  
+  const { fruitsList } = useContext<FruitContextType>(FruitContext);
   const inputRef = useRef<TextInput>(null);
   
   useEffect(() => {

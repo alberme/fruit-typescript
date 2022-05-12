@@ -1,4 +1,4 @@
-import { useContext, useState, FC } from 'react';
+import { useContext, FC } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { FruitType, FruitContextType } from '../utils/fruitData';
