@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   addFruits: {
-    flexGrow: 1,
-    justifyContent: 'center'
+    justifyContent: 'flex-end'
   },
 });
 
