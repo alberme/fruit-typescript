@@ -11,21 +11,18 @@ const StarredList: FC = () => {
 
   return (
     <View style={styles.starredList}>
-      {starredFruitsList.length === 0 ? (
-        <Text style={globalStyles.text}>You have no starred fruits!</Text>
-      ) : (
-        <FlatList
-          data={starredFruitsList}
-          renderItem={({ item }) => (
-            <Item 
-              id={item.id}
-              name={item.name}
-              price={item.price}
-              starred={item.starred}
-            />
-          )}
-        />
-      )}
+      <FlatList
+        data={starredFruitsList}
+        renderItem={({ item }) => (
+          <Item 
+            id={item.id}
+            name={item.name}
+            price={item.price}
+            starred={item.starred}
+          />
+        )}
+        ListEmptyComponent={<Text style={globalStyles.text}>You have no starred fruits!</Text>}
+      />
     </View>
   )
 }
