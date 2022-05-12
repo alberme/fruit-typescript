@@ -1,0 +1,63 @@
+import { useState, useRef, useContext, FC } from "react";
+import { View, StyleSheet, FlatList, TextInput } from "react-native";
+import { FruitType, FruitContextType } from "../utils/fruitData";
+import { FruitContext } from './context/FruitProvider';
+import Item from './ListItem';
+import Input from './Input';
+import AddFruit from './AddFruit';
+
+const FruitList: FC = () => {
+  const [searchList, setSearchList] = useState<FruitType[]>([]);
+  const { fruitsList } = useContext<FruitContextType>(FruitContext);
+  const inputRef = useRef<TextInput>(null);
+  
+  const handleSearch = (text: string) => {
+    const foundFruits: FruitType[] = fruitsList.filter(fruit => fruit.name.toLowerCase().includes(text));
+    setSearchList(foundFruits);
+  };
+  
+  return (
+  <View>
+    <View style={styles.search}>
+      <Input
+        icon="search"
+        placeholder="Search"
+        onChangeText={(text: string) => handleSearch(text)}
+        inputRef={inputRef}
+      />
+    </View>
+    <View style={styles.fruitList}>
+      <FlatList
+        data={fruitsList}
+        renderItem={({ item }) => (
+          <Item
+            id={item.id}
+            name={item.name}
+            price={item.price}
+            starred={item.starred}
+          />
+        )}
+      />
+    </View>
+    <View style={styles.addFruits}>
+      <AddFruit />
+    </View>
+  </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  search: {
+    flexShrink: 1,
+    paddingBottom: 20,
+  },
+  fruitList: {
+    flexShrink: 1,
+    paddingBottom: 10,
+  },
+  addFruits: {
+    flexGrow: 1,
+  },
+});
+
+export default FruitList;
