@@ -17,13 +17,13 @@ export default function App() {
           <View style={styles.tabsContainer}>
             <TouchableOpacity
               onPress={() => setTab("list")}
-              style={styles.tab}
+              style={[styles.tab, tab === 'list' && styles.tabSelected]}
             >
               <Text style={globalStyles.text}>List</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setTab("starred")}
-              style={styles.tab}
+              style={[styles.tab, tab === 'starred' && styles.tabSelected]}
             >
               <Text style={globalStyles.text}>Starred</Text>
             </TouchableOpacity>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
   },
   listContainer: {
-    height: '100%',
+    height: '85%'
   },
   tabsContainer: {
     flexDirection: "row",
@@ -63,8 +63,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 10,
   },
+  tabSelected: {
+    backgroundColor: "skyblue",
+  },
   tab: {
-    backgroundColor: 'skyblue',
+    backgroundColor: 'lightgray',
     padding: 10,
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
