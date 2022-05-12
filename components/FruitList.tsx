@@ -17,7 +17,7 @@ const FruitList: FC = () => {
   };
   
   return (
-  <View>
+    <>
     <View style={styles.search}>
       <Input
         icon="search"
@@ -42,7 +42,7 @@ const FruitList: FC = () => {
     <View style={styles.addFruits}>
       <AddFruit />
     </View>
-  </View>
+    </>
   )
 }
 
@@ -52,11 +52,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   fruitList: {
-    flexShrink: 1,
+    flexGrow: 1,
     paddingBottom: 10,
   },
   addFruits: {
     flexGrow: 1,
+    justifyContent: 'center'
   },
 });
 

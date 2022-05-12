@@ -55,13 +55,13 @@ const AddFruit: FC = () => {
           <Text style={globalStyles.text}>Submit</Text>
         </TouchableOpacity>
       </View>
-      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   addFruitForm: {
+    justifyContent: 'flex-end',
     flexWrap: 'wrap'
   },
   addInputs: {

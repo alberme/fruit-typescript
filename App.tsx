@@ -28,7 +28,7 @@ export default function App() {
               <Text style={globalStyles.text}>Starred</Text>
             </TouchableOpacity>
           </View>
-          <View>
+          <View style={styles.listContainer}>
             {tab === "list" && (
               <FruitList />
             )}
@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 15,
     marginTop: StatusBar.currentHeight,
+  },
+  listContainer: {
+    height: '100%',
   },
   tabsContainer: {
     flexDirection: "row",
