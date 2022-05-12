@@ -1,7 +1,8 @@
 import { useContext, FC } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { FruitContext } from './context/FruitProvider';
 import { FruitContextType } from '../utils/fruitData';
+import globalStyles from '../utils/globalStyles';
 import Item from './ListItem';
 
 const StarredList: FC = () => {
@@ -10,17 +11,21 @@ const StarredList: FC = () => {
 
   return (
     <View style={styles.starredList}>
-      <FlatList
-        data={starredFruitsList}
-        renderItem={({ item }) => (
-          <Item 
-            id={item.id}
-            name={item.name}
-            price={item.price}
-            starred={item.starred}
-          />
-        )}
-      />
+      {starredFruitsList.length === 0 ? (
+        <Text style={globalStyles.text}>You have no starred fruits!</Text>
+      ) : (
+        <FlatList
+          data={starredFruitsList}
+          renderItem={({ item }) => (
+            <Item 
+              id={item.id}
+              name={item.name}
+              price={item.price}
+              starred={item.starred}
+            />
+          )}
+        />
+      )}
     </View>
   )
 }
