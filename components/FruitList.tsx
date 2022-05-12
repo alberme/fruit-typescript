@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, FC } from "react";
+import { useState, useRef, useEffect, useContext, FC } from "react";
 import { View, StyleSheet, FlatList, TextInput } from "react-native";
 import { FruitType, FruitContextType } from "../utils/fruitData";
 import { FruitContext } from './context/FruitProvider';
@@ -9,12 +9,20 @@ import AddFruit from './AddFruit';
 const FruitList: FC = () => {
   const [searchList, setSearchList] = useState<FruitType[]>([]);
   const { fruitsList } = useContext<FruitContextType>(FruitContext);
+  const [showSearchList, setShowSearchList] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const inputRef = useRef<TextInput>(null);
   
-  const handleSearch = (text: string) => {
-    const foundFruits: FruitType[] = fruitsList.filter(fruit => fruit.name.toLowerCase().includes(text));
-    setSearchList(foundFruits);
-  };
+  useEffect(() => {
+    if (searchQuery.length > 0) {
+      const foundFruits: FruitType[] = fruitsList.filter(fruit => fruit.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      setSearchList(foundFruits);
+      setShowSearchList(true);
+    } else {
+      setSearchList([]);
+      setShowSearchList(false);
+    }
+  }, [searchQuery, fruitsList])
   
   return (
     <>
@@ -22,13 +30,13 @@ const FruitList: FC = () => {
       <Input
         icon="search"
         placeholder="Search"
-        onChangeText={(text: string) => handleSearch(text)}
+        onChangeText={(text: string) => setSearchQuery(text)}
         inputRef={inputRef}
       />
     </View>
     <View style={styles.fruitList}>
       <FlatList
-        data={fruitsList}
+        data={showSearchList ? searchList : fruitsList}
         renderItem={({ item }) => (
           <Item
             id={item.id}
